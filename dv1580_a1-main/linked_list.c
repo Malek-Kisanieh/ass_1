@@ -5,7 +5,7 @@
 // Define a structure named Node that we can use during the implementation:
 typedef struct Node {
     uint16_t data;       // Stores the data as an unsigned 16_bit integer
-    struct Node* next;    // A pointer to the next node in the list
+    struct Node* next;    //. A pointer to the next node in the list
 } Node;
 
 
