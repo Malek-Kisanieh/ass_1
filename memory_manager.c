@@ -4,7 +4,7 @@
 #include <string.h>
 #include <errno.h>
 
-// Struktur för att hantera ett minnesblock inom minnespoolen.
+// Struktur för att hantera ett minnesblock inom minnespoolen..
 typedef struct MemBlock {
     size_t block_size;           // Storleken på detta minnesblock i byte
     int is_available;            // Flagga som indikerar om blocket är ledigt (1) eller upptaget (0)
