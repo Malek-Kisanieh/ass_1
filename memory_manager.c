@@ -95,7 +95,7 @@ void* mem_alloc(size_t size) {
 // Parametrar:
 // - ptr: Pekare till det minnesblock som ska frigöras
 // Felhantering:
-// - Ignorerar NULL-pekare och varnar om blocket redan är fritt eller inte hittas
+// - Ignorerar NULL-pekare och varnar om blocket redan är fritt eller inte hittas.
 void mem_free(void* ptr) {
     if (!ptr) {
         fprintf(stderr, "Varning: Försökte frigöra en NULL-pekare.\n");
