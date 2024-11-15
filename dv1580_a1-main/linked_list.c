@@ -28,7 +28,7 @@ void list_insert(Node** head, uint16_t data) {
     // Kontrollera om minnesallokeringen lyckades
     if (!new_node) {
         printf("Minnesallokering misslyckades\n");  // Om allokeringen misslyckas, skriv ut felmeddelande
-        return;  // Avslutar funktionen
+        return;  // Avslutar funktionen:
     }
     
     // Tilldela det specifika datavärdet till den nya noden
