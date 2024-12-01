@@ -8,7 +8,6 @@ typedef struct Node {
     struct Node* next;    //. A pointer to the next node in the list
 } Node;
 
-
 // Initializes a linked list and the custom memory manager.
 // Parameters:
 // - head: Pointer to the head pointer of the linked list.
