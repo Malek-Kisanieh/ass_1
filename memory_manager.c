@@ -4,16 +4,15 @@
 #include <string.h>
 #include <errno.h>
 
-// Struktur för att hantera ett minnesblock inom minnespoolen..
 typedef struct MemBlock {
-    size_t block_size;           // Storleken på detta minnesblock i byte
-    int is_available;            // Flagga som indikerar om blocket är ledigt (1) eller upptaget (0)
-    struct MemBlock* next_block; // Pekare till nästa minnesblock i den länkade listan
-    void* data_ptr;              // Pekare till det faktiska dataområdet som kan användas inom blocket
+    size_t block_size;           
+    int is_available;            
+    struct MemBlock* next_block; 
+    void* data_ptr;              
 } MemBlock;
 
-// Globala variabler för att hantera minnespoolen
-void* pool_start = NULL;       // Pekare till början av hela minnespoolen i minnet
+
+void* pool_start = NULL;       
 MemBlock* pool_head = NULL;    // Pekare till det första minnesblocket i den länkade listan
 size_t total_pool_size = 0;    // Totala storleken på minnespoolen i byte
 
