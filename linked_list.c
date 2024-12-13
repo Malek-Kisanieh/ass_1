@@ -8,10 +8,6 @@ typedef struct Node {
     struct Node* next;    //. A pointer to the next node in the list
 } Node;
 
-// Initializes a linked list and the custom memory manager.
-// Parameters:
-// - head: Pointer to the head pointer of the linked list.
-// - size: Size of the memory pool to be initialized.
 
 // The function sets up the list and prepares it for operations
 void list_init(Node** head, size_t size) {
@@ -50,12 +46,6 @@ void list_insert(Node** head, uint16_t data) {
 }
 
 
-// Infogar en ny nod direkt efter en given nod.
-// Parametrar:
-// - prev_node: Noden efter vilken den nya noden ska infogas.
-// - data: Datan som ska infogas i den nya noden.
-// Felhantering:
-// - Skriver ut ett felmeddelande om den föregående noden är NULL.
 // - Skriver ut ett felmeddelande om minnesallokeringen misslyckas.
 void list_insert_after(Node* prev_node, uint16_t data) {
     // Kontrollera om föregående nod är NULL
@@ -82,11 +72,6 @@ void list_insert_after(Node* prev_node, uint16_t data) {
     prev_node->next = new_node;
 }
 
-// Infogar en ny nod före en given nod.
-// Parametrar:
-// - head: Pekare till pekaren som håller listans första nod.
-// - next_node: Noden före vilken den nya noden ska infogas.
-// - data: Datan som ska infogas i den nya noden.
 
 void list_insert_before(Node** head, Node* next_node, uint16_t data) {
     // Kontrollera om next_node är NULL
@@ -131,13 +116,6 @@ void list_insert_before(Node** head, Node* next_node, uint16_t data) {
 }
 
 
-// Tar bort den första noden med angiven data.
-// Parametrar:
-// - head: Pekare till pekaren som håller listans första nod.
-// - data: Datan för noden som ska tas bort.
-// Felhantering:
-// - Skriver ut ett felmeddelande om listan är tom.
-// - Skriver ut ett felmeddelande om datan inte hittas i listan.
 void list_delete(Node** head, uint16_t data) {
     if (*head == NULL) {
         printf("Listan är tom\n");  // Felmeddelande om listan är tom
@@ -158,7 +136,7 @@ void list_delete(Node** head, uint16_t data) {
         return;
     }
 
-    // Om noden är den första i listan
+    
     if (previous == NULL) {
         *head = current->next;  // Uppdatera huvudpekaren
     } else {
@@ -168,12 +146,7 @@ void list_delete(Node** head, uint16_t data) {
     mem_free(current);  // Frigör minnet för den borttagna noden
 }
 
-// Söker efter en nod med angiven data.
-// Parametrar:
-// - head: Pekare till pekaren som håller listans första nod.
-// - data: Datan som ska sökas efter.
-// Returnerar:
-// - En pekare till noden som innehåller datan om den hittas, annars NULL.
+
 Node* list_search(Node** head, uint16_t data) {
     Node* current = *head;  // Pekare till den aktuella noden
     while (current != NULL) {
@@ -185,9 +158,6 @@ Node* list_search(Node** head, uint16_t data) {
     return NULL;  // Returnerar NULL om datan inte hittas
 }
 
-// Visar alla element i listan.
-// Parametrar:
-// - head: Pekare till pekaren som håller listans första nod.
 void list_display(Node** head) {
     Node* current = *head;  // Pekare till den aktuella noden
     printf("[");
@@ -201,11 +171,6 @@ void list_display(Node** head) {
     printf("]");
 }
 
-// Visar element mellan två noder (inklusive).
-// Parametrar:
-// - head: Pekare till pekaren som håller listans första nod.
-// - start_node: Startnoden (inklusive). Om NULL börjar från huvudet.
-// - end_node: Slutnoden (inklusive). Om NULL går till slutet.
 void list_display_range(Node** head, Node* start_node, Node* end_node) {
     Node* current = start_node ? start_node : *head;  // Starta från start_node eller huvudnoden
 
@@ -220,11 +185,6 @@ void list_display_range(Node** head, Node* start_node, Node* end_node) {
     printf("]");
 }
 
-// Räknar antalet noder i listan.
-// Parametrar:
-// - head: Pekare till pekaren som håller listans första nod.
-// Returnerar:
-// - Det totala antalet noder i listan.
 int list_count_nodes(Node** head) {
     int count = 0;  // Räknare för noder
     Node* current = *head;  // Pekare till den aktuella noden
@@ -235,9 +195,6 @@ int list_count_nodes(Node** head) {
     return count;  // Returnerar det totala antalet noder
 }
 
-// Frigör alla noder i listan och avallokerar minneshanteraren.
-// Parametrar:
-// - head: Pekare till pekaren som håller listans första nod.
 void list_cleanup(Node** head) {
     Node* current = *head;  // Pekare till den aktuella noden
     while (current != NULL) {

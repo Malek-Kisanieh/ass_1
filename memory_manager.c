@@ -13,14 +13,10 @@ typedef struct MemBlock {
 
 
 void* pool_start = NULL;       
-MemBlock* pool_head = NULL;    // Pekare till det första minnesblocket i den länkade listan
-size_t total_pool_size = 0;    // Totala storleken på minnespoolen i byte
+MemBlock* pool_head = NULL;    
+size_t total_pool_size = 0; 
 
-// Funktion för att initiera minnespoolen med en given storlek
-// Parametrar:
-// - pool_size: Den totala storleken som ska allokeras för poolen
-// Felhantering:
-// - Skriver ut ett felmeddelande och avslutar programmet om minnesallokeringen misslyckas
+
 void mem_init(size_t pool_size) {
     // Allokera minne för hela minnespoolen
     pool_start = malloc(pool_size);
@@ -46,11 +42,6 @@ void mem_init(size_t pool_size) {
     pool_head->next_block = NULL;       // Inget nästa block än
 }
 
-// Funktion för att allokera ett minnesblock av specificerad storlek från poolen
-// Parametrar:
-// - size: Antalet byte som ska allokeras.
-// Returnerar:
-// - Pekare till det allokerade minnesblocket ggom lyckat, annars NULL om inget lämpligt block finns
 void* mem_alloc(size_t size) {
     MemBlock* current = pool_head;
 
@@ -90,11 +81,6 @@ void* mem_alloc(size_t size) {
     return NULL;
 }
 
-// Funktion för att frigöra ett tidigare allokerat minnesblock i poolen
-// Parametrar:
-// - ptr: Pekare till det minnesblock som ska frigöras
-// Felhantering:
-// - Ignorerar NULL-pekare och varnar om blocket redan är fritt eller inte hittas.
 void mem_free(void* ptr) {
     if (!ptr) {
         fprintf(stderr, "Varning: Försökte frigöra en NULL-pekare.\n");
@@ -130,12 +116,6 @@ void mem_free(void* ptr) {
     fprintf(stderr, "Varning: Pekaren %p var inte allokerad från denna pool.\n", ptr);
 }
 
-// Funktion för att ändra storleken på ett allokerat minnesblock i poolen
-// Parametrar:
-// - ptr: Pekare till det minnesblock som ska ändras
-// - size: Den nya storleken i byte
-// Returnerar:
-// - Pekare till det omallokerade minnesblocket eller NULL om ändringen misslyckas
 void* mem_resize(void* ptr, size_t size) {
     if (!ptr) return mem_alloc(size); // Om pekaren är NULL, allokera nytt minne
 
